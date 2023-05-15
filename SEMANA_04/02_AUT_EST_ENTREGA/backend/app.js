@@ -93,7 +93,6 @@ app.get('/removeUsuario', urlencodedParser, (req, res) => {
     db.close();
 });
 
-
 app.listen(port, hostname, () => {
     console.log(`Servidor rodando em http://${hostname}:${port}/`);
 })

@@ -26,7 +26,7 @@ app.get('/meu-perfil', (req, res) => {
     res.statusCode = 200;
     res.setHeader('Access-Control-Allow-Origin', '*');
     var db = new sqlite3.Database(DBPATH)
-    var sql = `SELECT * FROM user WHERE id=${req.query.id}`;
+    var sql = `SELECT * FROM User WHERE id=${req.query.id}`;
         db.all(sql, [], (err, rows) => {
             if (err) {
                 throw err;
@@ -41,7 +41,7 @@ app.get('/projeto/vagao', (req,res) => {
     res.statusCode = 200;
     res.setHeader('Access-Control-Allow-Origin', '*');
     var db = new sqlite3.Database(DBPATH);
-    var sql = `SELECT * FROM vagao WHERE id=${req.query.id}`
+    var sql = `SELECT * FROM Vagao WHERE id=${req.query.id}`
     db.all(sql, [], (err, rows) => {
         if (err) {
             throw err;
@@ -55,12 +55,42 @@ app.get('/projeto/picos', (req,res) => {
     res.statusCode = 200;
     res.setHeader('Access-Control-Allow-Origin', '*');
     var db = new sqlite3.Database(DBPATH);
-    var sql = `SELECT * FROM pico WHERE viagem_id=${req.body.viagem_id}`;
+    var sql = `SELECT * FROM Pico WHERE viagem_id=${req.body.viagem_id}`;
     db.all(sql, [], (err, rows) => {
         if (err) {
             throw err;
         }
         res.json(rows)
+    });
+    db.close();
+});
+
+app.get('/projeto/choques', (req, res) => {
+    res.statusCode = 200;
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    var db = new sqlite3.Database(DBPATH);
+    var sql = `SELECT * FROM Choque WHERE viagem_id=${req.body.viagem_id}`;
+    db.all(sql, [], (err, rows) => {
+        if (err) {
+            throw err;
+        }
+        res.json(rows)
+    });
+    db.close();
+});
+
+// Endpoints comparação
+
+app.get('/projeto/comparacao', (req, res) => {
+    res.statusCode = 200;
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    var db = new sqlite3.Database(DBPATH);
+    var sql = `SELECT * FROM Choque, Pico, Vagao WHERE id_vagao=${req.body.id_vagao}`;
+    db.all(sql, [], (err, rows) => {
+        if (err) {
+            throw err;
+        }
+        res.json(rows);
     });
     db.close();
 });

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Leaflet Map Example</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+</head>
+<body>
+  <div id="map" style="width: 1920px; height: 1080px;"></div>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Create a map centered on a specific location
+      var map = L.map('map').setView([51.505, -0.09], 13);
+      // Add a tile layer to display the map
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+        maxZoom: 18,
+      }).addTo(map);
+
+      const url = 'http://localhost:3000/projeto/map';
+      let markers = [];
+
+      fetch(url)
+        .then((response) => {
+          return response.json();
+        })
+        .then((data) => {
+          let coordenadas = data;
+          
+
+          coordenadas.forEach((item) => {
+            markers.push({
+              lat: item.Latitude,
+              lng: item.Longitude,
+              title: item.id
+            });
+          });
+          
+          console.log(markers); // Verifique se os marcadores estão corretamente preenchidos
+          markers.forEach(item => {
+            markers.map(function(marker) {
+            L.marker([marker.lat, marker.lng]).addTo(map).bindPopup(marker.id);
+          });
+        })
+          })
+          // Adicione os marcadores ao mapa usando a função map
+          
+        .catch(function(error) {
+          console.log(error);
+        });
+    });
+  </script>
+</body>
+</html>

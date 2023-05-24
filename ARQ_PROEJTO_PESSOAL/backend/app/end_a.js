@@ -117,7 +117,7 @@ app.get('/meus-projetos', (req, res) => {
     res.statusCode = 200;
     res.setHeader('Access-Control-Allow-Origin', '*');
     var db = new sqlite3.Database(DBPATH);
-    var sql = `SELECT * FROM Relatorio`;
+    var sql = `SELECT * FROM viagem`;
     db.all(sql, [], (err, rows) => {
         if (err) {
             throw err;
@@ -142,6 +142,34 @@ app.get('/projeto/mapa', (req, res) => {
     });
     db.close();
     
+});
+
+app.get('/projeto/relatorio', (req, res) => {
+    res.statusCode = 200;
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    var db = new sqlite3.Database(DBPATH);
+    var sql = `SELECT id FROM relatorio`;
+    db.all(sql, [], (err, rows) => {
+        if (err) {
+            throw err;
+        };
+        res.json(rows);
+    });
+    db.close();
+});
+
+app.get('/projetos/salvos', (req, res) => {
+    res.statusCode = 200;
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    var db = new sqlite3.Database(DBPATH);
+    var sql = `SELECT * FROM viagem WHERE id=${req.body.id}`;
+    db.all(sql, [], (err, rows) => {
+        if (err) {
+            throw err;
+        };
+        res.json(rows);
+    });
+    db.close();
 });
 
 

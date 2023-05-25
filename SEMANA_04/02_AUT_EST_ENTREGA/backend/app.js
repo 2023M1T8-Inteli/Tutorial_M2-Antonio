@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const urlencodedParser = bodyParser.urlencoded({ extended: false })
+const urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 const sqlite3 = require('sqlite3').verbose();
 const DBPATH = '../data/ponderada_v2.db';
@@ -16,6 +16,7 @@ app.use(express.static("../frontend/"));
 app.use(express.json());
 
 // Retorna os registros
+// Tabela **PESSOAS**
 app.get('/Pessoa', (req, res) => {
     res.statusCode = 200;
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -96,3 +97,4 @@ app.get('/removeUsuario', urlencodedParser, (req, res) => {
 app.listen(port, hostname, () => {
     console.log(`Servidor rodando em http://${hostname}:${port}/`);
 })
+

@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <header>
+        <nav class="navbar  bg-light navbar-light border-bottom border-black">
+            <div class="container">
+               <a href="#" class="navbar-brand ">
+                <img src="https://yt3.googleusercontent.com/ytc/AGIKgqOeO0XyRc2uKNs_ZP_7fSno17HFjaGUuTXD3mWG=s176-c-k-c0x00ffffff-no-rj" alt="Logo do IPT" width="80" height="68" style="margin-top: -20px;">
+               </a> 
+               <button class="navbar-toggler" data-bs-toggle="offcanvas" data-bs-target="#menu">
+                <span class="navbar-toggler-icon"></span>
+               </button>
+               <div class="offcanvas offcanvas-end "id="menu">
+                <div class="offcanvas-header">
+                    <button type="button" class="btn btn-close" data-bs-dismiss="offcanvas"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">Site do IPT</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">Salvos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">Perfil</a>
+                    </li>
+                </ul>
+                </div>
+               </div>
+            </div> 
+          </nav>
+    </header>
+    <div class="container">
+        <div class="d-flex align-items-center">
+          <div class="left-arroy">
+            <button>
+              <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" color="red" fill="currentColor" class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
+                <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
+              </svg>
+            </button>
+          </div>
+          <h1 class="ms-2 text-arow "style="font-family: 'Inter', sans-serif">NOME DO PROJETO</h1>
+        </div>
+        <h4 class="text-center mt-5" style="font-family: 'Inter', sans-serif">Escritório de dados</h4>
+        <h6 class="mt-4 ml-3" style="font-family: 'Inter', sans-serif">Que dados você procura?</h6>
+        <br>
+        <div class="d-flex justify-content-left mb-4 align-items-center">
+                <div class="form-outline me-3 mt-2" >
+                <h6 style="color: #595959;">Ocorrências</h6>
+                </div>
+            <button type="button" class="btn text-center cst-btn-1" id="btnplus" style="color: #595959;">+</button>
+            <button type="button" class="btn text-center cst-btn-1-1" id="btnplus" style="color: #595959; display: none;">-</button>
+        </div>
+        <div class="container choq-tip-1" style="display: none;">
+          <div class="row">
+            <div class="col-sm-4 col-md-4">
+              <div class="input-group">
+                <div class="input-group-text">
+                  <input type="checkbox" class="form-check-input" name="checkbox-c-1" id="checkbox-c-1">
+                  <label for="checkbox-c-1" class="form-check-label">Choque tipo 1</label>
+                </div>
+                <button class="btn chq-t-1a" type="button" style="color: #595959;">+</button>
+                <button class="btn chq-t-1f" type="button" style="color: #595959; display: none;">-</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="container cst-range1 mt-3" style="display: none;">
+          <div class="row">
+            <h6 style="color: #595959" class="ml-4">Força:</h6>
+            <div class="col-sm-4 col-md-2 d-flex">
+              <input type="range" class="form-range custom-range slider" min="-180" max="180" value="-180" id="slider1">
+            </div>
+            <label for="slider1" class="form-label sliderValue"> <span id="sliderValue1">-180 </span>TF</label>
+          </div>
+        </div>
+        <div class="container cst-range1 mt-3" style="display: none;">
+          <div class="row">
+            <h6 style="color: #595959" class="ml-4">Densidade de ocorrências:</h6>
+            <div class="col-sm-4 col-md-2 d-flex">
+              <input type="range" class="form-range custom-range slider" min="0" max="400" value="0" id="slider2">
+            </div>
+            <label for="slider2" class="form-label sliderValue"><span id="sliderValue2">0</span>Quantidade de vezes </label>
+          </div>
+        </div>
+        <div class="container choq-tip-2 mt-3" style="display: none;">
+          <div class="row">
+            <div class="col-sm-4 col-md-4">
+              <div class="input-group">
+                <div class="input-group-text">
+                  <input type="checkbox" class="form-check-input" name="checkbox-c-1" id="checkbox-c-1">
+                  <label for="checkbox-c-2" class="form-check-label">Choque tipo 2</label>
+                </div>
+                <button class="btn chq-t-2a" type="button" style="color: #595959;">+</button>
+                <button class="btn chq-t-2f" type="button" style="color: #595959; display: none;">-</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="container cst-range2 mt-3" style="display: none;">
+          <div class="row">
+            <h6 style="color: #595959" class="ml-4">Força:</h6>
+            <div class="col-sm-4 col-md-2 d-flex">
+              <input type="range" class="form-range custom-range slider" min="-180" max="180" value="-180" id="slider3">
+            </div>
+            <label for="slider1" class="form-label sliderValue">Valor: <span id="sliderValue3">-180</span></label>
+          </div>
+        </div>
+        <div class="container cst-range2 mt-3" style="display: none;">
+          <div class="row">
+            <h6 style="color: #595959" class="ml-4">Densidade de ocorrências:</h6>
+            <div class="col-sm-4 col-md-2 d-flex">
+              <input type="range" class="form-range custom-range slider" min="0" max="400" value="0" id="slider4">
+            </div>
+            <label for="slider2" class="form-label sliderValue">Valor: <span id="sliderValue4">0</span></label>
+          </div>
+        </div>
+
+        <div class="container p-c mt-3" style="display: none">
+          <div class="row">
+            <div class="col-sm-4 col-md-4">
+              <div class="input-group">
+                <div class="input-group-text">
+                  <input type="checkbox" class="form-check-input" name="checkbox-p-c" id="checkbox-p-c">
+                  <label for="checkbox-p-c" class="form-check-label">Ponto crítico</label>
+                </div>
+                <button class="btn p-ca" type="button" style="color: #595959;">+</button>
+                <button class="btn p-cf" type="button" style="color: #595959; display: none;">-</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="container cst-range3 mt-3" style="display: none;">
+          <div class="row">
+            <h6 style="color: #595959" class="ml-4">Força:</h6>
+            <div class="col-sm-4 col-md-2 d-flex">
+              <input type="range" class="form-range custom-range slider" min="-180" max="180" value="-180" id="slider5">
+            </div>
+            <label for="slider1" class="form-label sliderValue">Valor: <span id="sliderValue5">-180</span></label>
+          </div>
+        </div>
+        <div class="container cst-range3 mt-3" style="display: none;">
+          <div class="row">
+            <h6 style="color: #595959" class="ml-4">Densidade de ocorrências:</h6>
+            <div class="col-sm-4 col-md-2 d-flex">
+              <input type="range" class="form-range custom-range slider" min="0" max="400" value="0" id="slider6">
+            </div>
+            <label for="slider2" class="form-label sliderValue">Valor: <span id="sliderValue6">0</span></label>
+          </div>
+        </div>
+        
+        
+
+          
+        
+    </div>
+
+    
+
+
+    
+                    
+
+
+    <script>
+    const sliders = document.querySelectorAll('.slider');
+
+sliders.forEach((slider) => {
+  const sliderValue = document.getElementById(`sliderValue${slider.id.slice(-1)}`);
+
+  slider.addEventListener('input', function() {
+    const value = slider.value;
+    sliderValue.textContent = value;
+  });
+});
+
+    </script>
+    
+    <script src="https://kit.fontawesome.com/4a5eb6d700.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

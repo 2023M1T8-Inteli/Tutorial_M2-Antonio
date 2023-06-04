@@ -1,5 +1,9 @@
 $(document).ready(function() {
 
+     // Variaveis, abrir ocorrencias
+     let ocShow = '.choq-tip-1'
+
+
     // Botão abrir ocorrências
    $('.cst-btn-1').on("click", function(event) { 
         $('.choq-tip-1').show();
@@ -17,6 +21,7 @@ $(document).ready(function() {
         $('.cst-btn-1-1').hide();
         $('.cst-range1').hide();
         $('.choq-tip-2').hide();
+        $('.p-c').hide();
    });
 
    // Botão abrir choque tipo 1 ocorrencias
@@ -69,6 +74,44 @@ $(document).ready(function() {
     $('.p-ca').show();
     $('.p-cf').hide();
     
+    
    })
+
+   // Botao abrir tipos de dados
+
+   $('.cst-btn-2').on("click", function(event) {
+     $('.cst-btn-2').hide();
+     $('.cst-btn-2-2').show();
+     $('.histograma').show();
+     $('.markov').show();
+     $('.graficos').show();
+   })
+
+   // Botao fechar tipos de dados
+
+   $('.cst-btn-2-2').on("click", function(event) {
+     $('.cst-btn-2').show();
+     $('.cst-btn-2-2').hide();
+     $('.histograma').hide();
+     $('.markov').hide();
+     $('.graficos').hide();
+   })
+
+   // Botao abrir pico
+
+   $('.cst-btn-3').on("click", function(event) {
+     $('.cst-btn-3').hide();
+     $('.cst-btn-3-2').show();
+     $('.cst-range4').show();
+   })
+
+   // Botao fechar pico
+
+   $('.cst-btn-3-2').on("click", function(event) {
+     $('.cst-range4').hide();
+     $('.cst-btn-3').show();
+     $('.cst-btn-3-2').hide();
+   })
+
 
 });

@@ -28,26 +28,8 @@
     width: 30%;
 }
 
-.custom-range::-webkit-slider-thumb {
-    background: gray;
-  }
-  
-  .custom-range::-moz-range-thumb {
-    background: gray;
-  }
-  
-  .custom-range::-ms-thumb {
-    background: gray;
-  }
-  -webkit-slider-thumb:active {
-    background-color: red;
-}
--webkit-slider-thumb,
-.custom-range:focus::-webkit-slider-thumb, 
-.custom-range:focus::-moz-range-thumb,
-.custom-range:focus::-ms-thumb {
-    box-shadow: red;
-}
+
+
 
 #checkbox-c-1 {
     margin-top: -1.5px;

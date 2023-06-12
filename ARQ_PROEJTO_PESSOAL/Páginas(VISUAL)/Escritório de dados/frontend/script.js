@@ -20,8 +20,16 @@ $(document).ready(function() {
         $('.cst-btn-1').show();
         $('.cst-btn-1-1').hide();
         $('.cst-range1').hide();
+        $('.cst-range2').hide();
+        $('.cst-range3').hide();
         $('.choq-tip-2').hide();
         $('.p-c').hide();
+        $('.chq-t-1f').hide();
+        $('.chq-t-1a').show();
+        $('.chq-t-2f').hide();
+        $('.chq-t-2a').show();
+        $('.p-cf').hide();
+        $('.p-ca').show();
    });
 
    // Botão abrir choque tipo 1 ocorrencias
@@ -114,4 +122,20 @@ $(document).ready(function() {
    })
 
 
-});
+   // Código filtragem
+
+   const url = `/mapData/choque`;
+   
+   fetch(url)
+   .then((response) => {
+    return response.json();
+   })
+   .then((data) => {
+    let info = data
+
+    info.map(function(item) {
+      vetor.push([item.Latitude, item.Longitude, item.Velocidade, item.Data_Hora ,item.Position, item.Placa_Virtual, item.Trecho, item.F_max ,item.ACT, item.PEG])
+      console.log(vetor);
+   })
+  })
+})

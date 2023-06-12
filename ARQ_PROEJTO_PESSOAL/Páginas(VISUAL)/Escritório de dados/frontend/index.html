@@ -39,17 +39,25 @@
           </nav>
     </header>
     <div class="container">
-        <div class="d-flex align-items-center">
-          <div class="left-arroy">
-            <button>
-              <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" color="red" fill="currentColor" class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
-                <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
-              </svg>
-            </button>
-          </div>
-          <h1 class="ms-2 text-arow "style="font-family: 'Inter', sans-serif">NOME DO PROJETO</h1>
+      <div class="d-flex align-items-center">
+        <div class="left-arroy">
+          <button>
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" color="#15B9BF" fill="currentColor" class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
+              <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
+            </svg>
+          </button>
         </div>
-        <h4 class="text-center mt-5" style="font-family: 'Inter', sans-serif">Escritório de dados</h4>
+        <h1 class="ms-2 text-arow "style="font-family: 'Inter', sans-serif">NOME DO PROJETO</h1>
+      </div>
+    </div>
+    <div class="container justify-content-center align-items-center text-center mb-4">
+      <h4 class="text-center mt-5" style="font-family: 'Inter', sans-serif">Escritório de dados</h4>
+
+    </div>
+    <div class="container ">
+      <div class="row">
+        <div class="col-md-4">
+       
         <h6 class="mt-4 ml-3" style="font-family: 'Inter', sans-serif">Que dados você procura?</h6>
         <br>
         <div class="d-flex justify-content-left mb-4 align-items-center">
@@ -61,7 +69,7 @@
         </div>
         <div class="container choq-tip-1" style="display: none;">
           <div class="row">
-            <div class="col-sm-4 col-md-4">
+            <div>
               <div class="input-group">
                 <div class="input-group-text">
                   <input type="checkbox" class="form-check-input" name="checkbox-c-1" id="checkbox-c-1">
@@ -77,24 +85,37 @@
         <div class="container cst-range1 mt-3" style="display: none;">
           <div class="row">
             <h6 style="color: #595959" class="ml-4">Força:</h6>
-            <div class="col-sm-4 col-md-2 d-flex">
-              <input type="range" class="form-range custom-range slider" min="-180" max="180" value="-180" id="slider1">
+            <div class="col-sm-4">
+              <input type="range" class="form-range custom-range slider" min="-180" max="0" value="-180" id="slider1">
+              <div class="text-left"><label for="slider1" class="form-label sliderValue"> <span id="sliderValue1">-180 </span> TF</label>
+              </div>
             </div>
-            <label for="slider1" class="form-label sliderValue"> <span id="sliderValue1">-180 </span> TF</label>
+            <div class="col-sm-4">
+              <input type="range" class="form-range custom-range slider" min="0" max="180" value="180" id="slider8">
+              <div class="text-right"><label for="slider1" class="form-label sliderValue"> <span id="sliderValue8">-180 </span> TF</label>
+              </div>
+            </div>
           </div>
         </div>
         <div class="container cst-range1 mt-3" style="display: none;">
           <div class="row">
             <h6 style="color: #595959" class="ml-4">Densidade de ocorrências:</h6>
-            <div class="col-sm-4 col-md-2 d-flex">
-              <input type="range" class="form-range custom-range slider" min="0" max="400" value="0" id="slider2">
+            <div class="col-sm-4">
+              <input type="range" class="form-range custom-range slider" min="0" max="200" value="0" id="slider2">
+              <div class="text-left">
+                <label for="slider9" class="form-label sliderValue"> <span id="sliderValue2">0</span> Vezes</label>
+              </div>
             </div>
-            <label for="slider2" class="form-label sliderValue"><span id="sliderValue2">0 </span> Vezes</label>
+            <div class="col-sm-4">
+              <input type="range" class="form-range custom-range slider" min="200" max="400" value="400" id="slider9">
+              <div class="text-right"><label for="slider1" class="form-label sliderValue"> <span id="sliderValue9">400 </span> Vezes</label>
+              </div>
+            </div>
           </div>
         </div>
         <div class="container choq-tip-2 mt-3" style="display: none;">
           <div class="row">
-            <div class="col-sm-4 col-md-4">
+            <div>
               <div class="input-group">
                 <div class="input-group-text">
                   <input type="checkbox" class="form-check-input" name="checkbox-c-1" id="checkbox-c-1">
@@ -110,25 +131,41 @@
         <div class="container cst-range2 mt-3" style="display: none;">
           <div class="row">
             <h6 style="color: #595959" class="ml-4">Força:</h6>
-            <div class="col-sm-4 col-md-2 d-flex">
-              <input type="range" class="form-range custom-range slider" min="-180" max="180" value="-180" id="slider3">
+            <div class="col-sm-4">
+              <input type="range" class="form-range custom-range slider" min="-180" max="0" value="-180" id="slider3">
+              <div class="text-left">
+                <label for="slider1" class="form-label sliderValue"><span id="sliderValue3">-180 </span> TF</label>
+              </div>
             </div>
-            <label for="slider1" class="form-label sliderValue"><span id="sliderValue3">-180 </span> TF</label>
+            <div class="col-sm-4">
+              <input type="range" class="form-range custom-range slider" min="0" max="180" value="180" id="slider10">
+              <div class="text-left">
+                <label for="slider1" class="form-label sliderValue"><span id="sliderValue10">180 </span> TF</label>
+              </div>
+            </div>
           </div>
         </div>
         <div class="container cst-range2 mt-3" style="display: none;">
           <div class="row">
             <h6 style="color: #595959" class="ml-4">Densidade de ocorrências:</h6>
-            <div class="col-sm-4 col-md-2 d-flex">
-              <input type="range" class="form-range custom-range slider" min="0" max="400" value="0" id="slider4">
+            <div class="col-sm-4">
+              <input type="range" class="form-range custom-range slider" min="0" max="200" value="0" id="slider4">
+              <div class="text-left">
+                <label for="slider2" class="form-label sliderValue"><span id="sliderValue4">0 </span> Vezes</label>
+              </div>
             </div>
-            <label for="slider2" class="form-label sliderValue"><span id="sliderValue4">0 </span> Vezes</label>
+            <div class="col-sm-4">
+              <input type="range" class="form-range custom-range slider" min="200" max="400" value="400" id="slider11">
+              <div class="text-right">
+                <label for="slider2" class="form-label sliderValue"><span id="sliderValue11">400 </span> Vezes</label>
+              </div>
+            </div>
           </div>
         </div>
 
         <div class="container p-c mt-3 align-items-center " style="display: none">
           <div class="row">
-            <div class="col-sm-4 col-md-4">
+            <div>
               <div class="input-group">
                 <div class="input-group-text ">
                   <input type="checkbox" class="form-check-input" name="checkbox-p-c" id="checkbox-p-c" style="margin-right: 6px;">
@@ -144,19 +181,35 @@
         <div class="container cst-range3 mt-3" style="display: none;">
           <div class="row">
             <h6 style="color: #595959" class="ml-4">Força:</h6>
-            <div class="col-sm-4 col-md-2 d-flex">
-              <input type="range" class="form-range custom-range slider" min="-180" max="180" value="-180" id="slider5">
+            <div class="col-sm-4">
+              <input type="range" class="form-range custom-range slider" min="-180" max="0" value="-180" id="slider5">
+              <div class="text-left">
+                <label for="slider1" class="form-label sliderValue"><span id="sliderValue5">-180 </span> TF</label>
+              </div>
             </div>
-            <label for="slider1" class="form-label sliderValue"><span id="sliderValue5">-180 </span> TF</label>
+            <div class="col-sm-4">
+              <input type="range" class="form-range custom-range slider" min="0" max="180" value="180" id="slider12">
+              <div class="text-right">
+                <label for="slider1" class="form-label sliderValue"><span id="sliderValue12">180 </span> TF</label>
+              </div>
+            </div>
           </div>
         </div>
         <div class="container cst-range3 mt-3" style="display: none;">
           <div class="row">
             <h6 style="color: #595959" class="ml-4">Densidade de ocorrências:</h6>
-            <div class="col-sm-4 col-md-2 d-flex">
-              <input type="range" class="form-range custom-range slider" min="0" max="400" value="0" id="slider6">
+            <div class="col-sm-4">
+              <input type="range" class="form-range custom-range slider" min="0" max="200" value="0" id="slider6">
+              <div class="text-left">
+                <label for="slider2" class="form-label sliderValue"><span id="sliderValue6">0 </span> Vezes</label>
+              </div>
             </div>
-            <label for="slider2" class="form-label sliderValue"><span id="sliderValue6">0 </span> Vezes</label>
+            <div class="col-sm-4">
+              <input type="range" class="form-range custom-range slider" min="200" max="400" value="400" id="slider13">
+              <div class="text-right">
+                <label for="slider2" class="form-label sliderValue"><span id="sliderValue13">400 </span> Vezes</label>
+              </div>
+            </div>
           </div>
         </div>
         <div class="d-flex justify-content-left mb-4 align-items-center mt-4">
@@ -168,7 +221,7 @@
         </div>
         <div class="container histograma" style="display: none;">
           <div class="row">
-            <div class="col-sm-4 col-md-4">
+            <div>
               <div class="input-group">
                 <div class="input-group-text">
                   <input type="checkbox" class="form-check-input" name="checkbox-c-1" id="checkbox-c-1">
@@ -213,15 +266,41 @@
         <div class="container cst-range4 mt-3" style="display: none;">
           <div class="row">
             <h6 style="color: #595959" class="ml-4">Força de engates:</h6>
-            <div class="col-sm-4 col-md-2 d-flex">
-              <input type="range" class="form-range custom-range slider" min="-180" max="180" value="0" id="slider7">
+            <div class="col-sm-4">
+              <input type="range" class="form-range custom-range slider" min="-180" max="0" value="-180" id="slider7">
+              <div class="text-left">
+                <label for="slider2" class="form-label sliderValue"><span id="sliderValue7">-180 </span> TF</label>
+              </div>
             </div>
-            <label for="slider2" class="form-label sliderValue"><span id="sliderValue7">0 </span> TF</label>
+            <div class="col-sm-4">
+              <input type="range" class="form-range custom-range slider" min="0" max="180" value="180" id="slider14">
+              <div class="text-right">
+                <label for="slider2" class="form-label sliderValue"><span id="sliderValue14">180 </span> TF</label>
+              </div>
+            </div>
           </div>
         </div>
-        
+       </div>
+       <div class="col-md-4 d-flex justify-content-center align-items-center">
+        <div class="mt-4">
+          <button class="btn custom-btnslct text-left justify-content-left align-items-left d-flex">Viagem 1</button>
+          <br>
+          <button class="btn custom-btnslct text-left justify-content-left align-items-left d-flex ">Viagem 2</button>
+          <br>
+          <button class="btn custom-btnslct text-left justify-content-left align-items-left d-flex ">Viagem 3</button>
+          <br>
+          <button class="btn custom-btnslct text-left justify-content-left align-items-left d-flex ">Viagem 4</button>
+          <br>
+          <button class="btn custom-btnslct text-left justify-content-left align-items-left d-flex ">Viagem 5</button>
+        </div>
+      </div>
+      
+        <div class="col-md-4">
 
-        
+       </div>
+       </div> 
+       </div>
+      
 
           
         
@@ -238,7 +317,7 @@
     const sliders = document.querySelectorAll('.slider');
 
 sliders.forEach((slider) => {
-  const sliderValue = document.getElementById(`sliderValue${slider.id.slice(-1)}`);
+  const sliderValue = document.getElementById(`sliderValue${slider.id.match(/\d+$/)[0]}`);
 
   slider.addEventListener('input', function() {
     const value = slider.value;

@@ -1,0 +1,61 @@
+.triangle {
+  width: 0;
+  height: 0;
+  border-left: 100px solid transparent;
+  border-right: 100px solid transparent;
+  border-bottom: 200px solid #822100;
+  margin-left: -120px;
+  margin-top: -80px;
+  transform: rotate(78deg);
+
+}
+
+#img {
+  border-radius: 50%;
+  margin-top: -55px;
+}
+
+.hidden {
+  display: none;
+}
+
+.caixa:hover {
+  transform: scale(1.05);
+}
+
+.user {
+	padding: 1rem;
+	margin: 1rem;
+	background-color: #F0F0F0;
+	text-align: left;
+}
+.title {
+	display: inline-block;
+}
+.actions {
+	display: block;
+	float: right;
+}
+.action {
+	display: inline-block;
+	padding-left: 0.25rem;
+	padding-right: 0.25rem;
+	margin-left: 0.25rem;
+	margin-right: 0.25rem;
+	color: blue;
+	cursor: pointer;
+}
+.action:hover {
+	text-decoration: underline;
+}
+.insert {
+	padding-left: 0.25rem;
+	padding-right: 0.25rem;
+	margin-left: 0.25rem;
+	margin-right: 0.25rem;
+	color: blue;
+	cursor: pointer;
+}
+.insert:hover {
+	text-decoration: underline;
+}

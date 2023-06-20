@@ -33,7 +33,7 @@ app.get('/mapData/choque/f1', (req, res) => {
     console.log(req.body.sliderF1)
     res.setHeader('Access-Control-Allow-Origin', '*');
     var db = new sqlite3.Database(DBPATH);
-    var sql = `SELECT F_max, id_viagem FROM choques WHERE F_max BETWEEN ${req.query.sliderF1} AND ${req.query.sliderF2} AND tipo = 1`;
+    var sql = `SELECT F_max, id_viagem, Data_Hora, Velocidade, tipo FROM choques WHERE F_max BETWEEN ${req.query.sliderF1} AND ${req.query.sliderF2} AND tipo = 1`;
     db.all(sql, [], (err, rows) => {
         if (err) {
             throw err;
@@ -49,7 +49,7 @@ app.get('/mapData/choque/f2', (req, res) => {
     console.log(req.query.sliderF11)
     res.setHeader('Access-Control-Allow-Origin', '*');
     var db = new sqlite3.Database(DBPATH);
-    var sql = `SELECT F_max, id_viagem FROM choques WHERE F_max BETWEEN ${req.query.sliderF11} AND ${req.query.sliderF22} AND tipo = 2`;
+    var sql = `SELECT F_max, id_viagem, Data_Hora, Velocidade, tipo FROM choques WHERE F_max BETWEEN ${req.query.sliderF11} AND ${req.query.sliderF22} AND tipo = 2`;
     db.all(sql, [], (err, rows) => {
         if (err) {
             throw err;
@@ -65,7 +65,7 @@ app.get('/mapData/choque/pc', (req, res) => {
     console.log(req.query.sliderF11)
     res.setHeader('Access-Control-Allow-Origin', '*');
     var db = new sqlite3.Database(DBPATH);
-    var sql = `SELECT F_max, id_viagem FROM choques WHERE F_max BETWEEN ${req.query.sliderPC1} AND ${req.query.sliderPC2}`;
+    var sql = `SELECT F_max, id_viagem, Data_Hora, Velocidade FROM choques WHERE F_max BETWEEN ${req.query.sliderPC1} AND ${req.query.sliderPC2}`;
     db.all(sql, [], (err, rows) => {
         if (err) {
             throw err;
@@ -81,7 +81,7 @@ app.get('/mapData/choque/p', (req, res) => {
     console.log(req.query.sliderF11)
     res.setHeader('Access-Control-Allow-Origin', '*');
     var db = new sqlite3.Database(DBPATH);
-    var sql = `SELECT Engate, id_viagem FROM picos WHERE Engate BETWEEN ${req.query.sliderP1} AND ${req.query.sliderP2}`;
+    var sql = `SELECT Engate, id_viagem, Data_Hora, Velocidade FROM picos WHERE Engate BETWEEN ${req.query.sliderP1} AND ${req.query.sliderP2}`;
     db.all(sql, [], (err, rows) => {
         if (err) {
             throw err;

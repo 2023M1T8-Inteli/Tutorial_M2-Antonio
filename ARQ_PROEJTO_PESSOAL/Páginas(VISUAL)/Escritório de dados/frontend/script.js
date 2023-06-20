@@ -128,7 +128,7 @@ $(document).ready(function() {
 
    // Função para exibir os resultados
 
-   // Função para criar o gráfico
+
 // Função para criar o gráfico
 function criarGrafico(resultados, container, idViagem) {
   var div = document.createElement('div');
@@ -138,25 +138,45 @@ function criarGrafico(resultados, container, idViagem) {
   container.innerHTML = ''; // Limpa o conteúdo anterior
   container.appendChild(div);
 
-  google.charts.load('current', { 'packages': ['corechart'] });
+  google.charts.load('current', { packages: ['corechart'] });
   google.charts.setOnLoadCallback(drawChart);
 
   function drawChart() {
-    var viagemResultados = resultados.filter(function(resultado) {
+    var viagemResultados = resultados.filter(function (resultado) {
       return resultado.id_viagem === idViagem;
-    }).sort(function(a, b) {
+    }).sort(function (a, b) {
       return a.F_max - b.F_max;
     });
 
     var data = new google.visualization.DataTable();
     data.addColumn('number', 'F_max');
     data.addColumn('number', 'Velocidade - Tipo 1');
+    data.addColumn({ type: 'string', role: 'style' }); // Adiciona coluna para definir estilo da linha do tipo 1
     data.addColumn('number', 'Velocidade - Tipo 2');
+    data.addColumn({ type: 'string', role: 'style' }); // Adiciona coluna para definir estilo da linha do tipo 2
 
-    viagemResultados.forEach(function(resultado) {
-      var velocidadeTipo1 = resultado.tipo === 1 ? parseFloat(resultado.Velocidade) : null;
-      var velocidadeTipo2 = resultado.tipo === 2 ? parseFloat(resultado.Velocidade) : null;
-      data.addRow([parseFloat(resultado.F_max), velocidadeTipo1, velocidadeTipo2]);
+    viagemResultados.forEach(function (resultado) {
+      if (resultado.tipo === 1) {
+        data.addRow([
+          parseFloat(resultado.F_max),
+          parseFloat(resultado.Velocidade),
+          'color: red', // Estilo da linha do tipo 1 (vermelho)
+          null,
+          null
+        ]);
+      }
+    });
+
+    viagemResultados.forEach(function (resultado) {
+      if (resultado.tipo === 2) {
+        data.addRow([
+          parseFloat(resultado.F_max),
+          null,
+          null,
+          parseFloat(resultado.Velocidade),
+          'color: blue' // Estilo da linha do tipo 2 (azul)
+        ]);
+      }
     });
 
     var options = {
@@ -169,14 +189,43 @@ function criarGrafico(resultados, container, idViagem) {
         duration: 1000,
         easing: 'inAndOut'
       },
-      curveType: 'function'
+      series: {
+        0: { lineWidth: 2, curveType: 'function' }, // Estilo da linha do tipo 1
+        1: { lineWidth: 2, curveType: 'function' }  // Estilo da linha do tipo 2
+      }
     };
 
     var chart = new google.visualization.LineChart(div);
     chart.draw(data, options);
-    chart.draw(data2, options);
+
+    // Adiciona ouvinte de evento para as caixas de seleção
+    var checkboxTipo1 = document.getElementById('checkbox-c-1');
+    var checkboxTipo2 = document.getElementById('checkbox-c-2');
+
+    checkboxTipo1.addEventListener('change', function () {
+      if (checkboxTipo1.checked) {
+        options.series[0].lineWidth = 2; // Define a espessura da linha do tipo 1
+      } else {
+        options.series[0].lineWidth = 0; // Oculta a linha do tipo 1
+      }
+
+      chart.draw(data, options);
+    });
+
+    checkboxTipo2.addEventListener('change', function () {
+      if (checkboxTipo2.checked) {
+        options.series[1].lineWidth = 2; // Define a espessura da linha do tipo 2
+      } else {
+        options.series[1].lineWidth = 0; // Oculta a linha do tipo 2
+      }
+
+      chart.draw(data, options);
+    });
   }
 }
+
+
+
 
 var obj = {
   tipo1: [],

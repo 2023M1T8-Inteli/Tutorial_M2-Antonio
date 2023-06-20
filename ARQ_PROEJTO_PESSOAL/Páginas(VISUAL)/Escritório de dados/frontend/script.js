@@ -122,20 +122,129 @@ $(document).ready(function() {
    })
 
 
+
+
    // Código filtragem
 
-   const url = `/mapData/choque`;
-   
-   fetch(url)
-   .then((response) => {
-    return response.json();
-   })
-   .then((data) => {
-    let info = data
+   // Função para exibir os resultados
+   function mostrarIdViagem(resultados) {
+    var resultadosContainer = document.getElementById('resultados-container');
+    resultadosContainer.innerHTML = ''; // Limpa o conteúdo anterior
+  
+    if (resultados.length > 0) {
+      var uniqueIds = [];
+      var ul = document.createElement('ul');
+      ul.classList.add('lista-resultados', 'list-group'); // Adiciona classes CSS à lista
+  
+      resultados.forEach(function(resultado) {
+        if (!uniqueIds.includes(resultado.id_viagem)) {
+          uniqueIds.push(resultado.id_viagem); // Adiciona o ID da viagem ao array
+          var li = document.createElement('li');
+          li.textContent = 'Viagem ' + resultado.id_viagem; // Adiciona a palavra "Viagem"
+          li.classList.add('list-group-item', 'list-group-item-primary', 'mb-2', 'custom-font'); // Adiciona classes CSS e Bootstrap aos itens da lista
+          ul.appendChild(li);
+        }
+      });
+  
+      resultadosContainer.appendChild(ul); // Adiciona a lista ao container
+    } else {
+      var p = document.createElement('h4');
+      p.textContent = 'Nenhum resultado encontrado.';
+      resultadosContainer.appendChild(p);
+    }
+  }
+  
+  
+  
+  
+  
+  
+  
 
-    info.map(function(item) {
-      vetor.push([item.Latitude, item.Longitude, item.Velocidade, item.Data_Hora ,item.Position, item.Placa_Virtual, item.Trecho, item.F_max ,item.ACT, item.PEG])
-      console.log(vetor);
-   })
-  })
-})
+// Função para fazer a requisição Ajax
+   function enviarSolicitacaoAjax(url, valoresSliders) {
+    $.ajax({
+      url: url,
+      method: 'GET',
+      data: valoresSliders,
+      success: function(response) {
+        mostrarIdViagem(response); // Chama a função mostrarIdViagem para exibir os resultados
+      },
+      error: function(error) {
+        console.error(error);
+      }
+    });
+  }
+  
+  
+  // Manipuladores de eventos para os sliders
+  $('#slider1, #slider8').on('input', function() {
+    if ($('#checkbox-c-1').is(':checked')) {
+
+      var sliderF1 = $('#slider1').val();
+      var sliderF2 = $('#slider8').val();
+    
+      var valoresSliders = {
+        sliderF1: sliderF1,
+        sliderF2: sliderF2
+      };
+    
+      enviarSolicitacaoAjax('/mapData/choque/f1', valoresSliders); // Chama a função para fazer a requisição Ajax
+
+    }
+
+  });
+  
+  $('#slider3, #slider10').on('input', function() {
+    if ($('#checkbox-c-2').is(':checked')) {
+
+
+    var sliderF11 = $('#slider3').val();
+    var sliderF22 = $('#slider10').val();
+  
+    var valoresSliders = {
+      sliderF11: sliderF11,
+      sliderF22: sliderF22
+    };
+  
+    enviarSolicitacaoAjax('/mapData/choque/f2', valoresSliders); // Chama a função para fazer a requisição Ajax
+  }
+
+  });
+  
+  $('#slider5, #slider12').on('input', function() {
+    if ($('#checkbox-p-c').is(':checked')) {
+
+
+    var sliderPC1 = $('#slider5').val();
+    var sliderPC2 = $('#slider12').val();
+  
+    var valoresSliders = {
+      sliderPC1: sliderPC1,
+      sliderPC2: sliderPC2
+    };
+  
+    enviarSolicitacaoAjax('/mapData/choque/pc', valoresSliders); // Chama a função para fazer a requisição Ajax
+  }
+  });
+  
+  $('#slider7, #slider14').on('input', function() {
+    if ($('#checkbox-pc').is(':checked')) {
+
+
+
+    var sliderP1 = $('#slider7').val();
+    var sliderP2 = $('#slider14').val();
+  
+    var valoresSliders = {
+      sliderP1: sliderP1,
+      sliderP2: sliderP2
+    };
+  
+    enviarSolicitacaoAjax('/mapData/choque/p', valoresSliders); // Chama a função para fazer a requisição Ajax
+  }
+  });
+  
+
+});
+

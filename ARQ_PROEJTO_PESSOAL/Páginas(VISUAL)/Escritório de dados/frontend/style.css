@@ -120,7 +120,14 @@
 .cst-btn-3-2 {
     border-color: transparent;
     background-color: transparent;
+
 }
+
+.custom-font {
+    font-family: 'Inter', sans-serif;
+}
+
+
 
 h1 {
     font-family: 'Inter', sans-serif;

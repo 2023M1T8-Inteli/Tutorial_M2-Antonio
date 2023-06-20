@@ -118,8 +118,8 @@
             <div>
               <div class="input-group">
                 <div class="input-group-text">
-                  <input type="checkbox" class="form-check-input" name="checkbox-c-1" id="checkbox-c-1">
-                  <label for="checkbox-c-2" class="form-check-label">Choque tipo 2</label>
+                  <input type="checkbox" class="form-check-input" name="checkbox-c-2" id="checkbox-c-2">
+                  <label for="checkbox-c-2" class="form-check-label text-right" >Choque tipo 2</label>
                 </div>
                 <button class="btn chq-t-2a" type="button" style="color: #595959;">+</button>
                 <button class="btn chq-t-2f" type="button" style="color: #595959; display: none;">-</button>
@@ -168,46 +168,29 @@
             <div>
               <div class="input-group">
                 <div class="input-group-text ">
-                  <input type="checkbox" class="form-check-input" name="checkbox-p-c" id="checkbox-p-c" style="margin-right: 6px;">
-                  <label for="checkbox-p-c" class="form-check-label text-right" >Ponto crítico</label>
+                  <input type="checkbox" class="form-check-input" name="checkbox-pc" id="checkbox-pc" style="margin-right: 6px;">
+                  <label for="checkbox-p-c" class="form-check-label text-right" >Pico</label>
                 </div>
-                <button class="btn p-ca" type="button" style="color: #595959;">+</button>
-                <button class="btn p-cf" type="button" style="color: #595959; display: none;">-</button>
+                <button class="btn cst-btn-3" type="button" style="color: #595959;">+</button>
+                <button class="btn cst-btn-3-2" type="button" style="color: #595959; display: none;">-</button>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="container cst-range3 mt-3" style="display: none;">
+        <div class="container cst-range4 mt-3" style="display: none;">
           <div class="row">
-            <h6 style="color: #595959" class="ml-4">Força:</h6>
+            <h6 style="color: #595959" class="ml-4">Força de engate:</h6>
             <div class="col-sm-4">
-              <input type="range" class="form-range custom-range slider" min="-180" max="0" value="-180" id="slider5">
+              <input type="range" class="form-range custom-range slider" min="-180" max="0" value="-180" id="slider7">
               <div class="text-left">
-                <label for="slider1" class="form-label sliderValue"><span id="sliderValue5">-180 </span> TF</label>
+                <label for="slider1" class="form-label sliderValue"><span id="sliderValue7">-180 </span> TF</label>
               </div>
             </div>
             <div class="col-sm-4">
-              <input type="range" class="form-range custom-range slider" min="0" max="180" value="180" id="slider12">
+              <input type="range" class="form-range custom-range slider" min="0" max="180" value="180" id="slider14">
               <div class="text-right">
-                <label for="slider1" class="form-label sliderValue"><span id="sliderValue12">180 </span> TF</label>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="container cst-range3 mt-3" style="display: none;">
-          <div class="row">
-            <h6 style="color: #595959" class="ml-4">Densidade de ocorrências:</h6>
-            <div class="col-sm-4">
-              <input type="range" class="form-range custom-range slider" min="0" max="200" value="0" id="slider6">
-              <div class="text-left">
-                <label for="slider2" class="form-label sliderValue"><span id="sliderValue6">0 </span> Vezes</label>
-              </div>
-            </div>
-            <div class="col-sm-4">
-              <input type="range" class="form-range custom-range slider" min="200" max="400" value="400" id="slider13">
-              <div class="text-right">
-                <label for="slider2" class="form-label sliderValue"><span id="sliderValue13">400 </span> Vezes</label>
+                <label for="slider1" class="form-label sliderValue"><span id="sliderValue14">180 </span> TF</label>
               </div>
             </div>
           </div>
@@ -255,43 +238,11 @@
             </div>
           </div>
         </div>
-        <div class="d-flex justify-content-left  align-items-center">
-          <div class="form-outline me-3 mt-2" >
-            <input type="checkbox" class="form-check-input" name="checkbox" id="checkbox">
-            <label for="checkbox-p-c" class="form-check-label" style="color:#595959;">  Pico</label>
-          </div>
-      <button type="button" class="btn text-center mt-2 cst-btn-3" id="btnplus" style="color: #595959;">+</button>
-      <button type="button" class="btn text-center mt-2 cst-btn-3-2" id="btnplus" style="color: #595959; display: none;">-</button>
-        </div>
-        <div class="container cst-range4 mt-3" style="display: none;">
-          <div class="row">
-            <h6 style="color: #595959" class="ml-4">Força de engates:</h6>
-            <div class="col-sm-4">
-              <input type="range" class="form-range custom-range slider" min="-180" max="0" value="-180" id="slider7">
-              <div class="text-left">
-                <label for="slider2" class="form-label sliderValue"><span id="sliderValue7">-180 </span> TF</label>
-              </div>
-            </div>
-            <div class="col-sm-4">
-              <input type="range" class="form-range custom-range slider" min="0" max="180" value="180" id="slider14">
-              <div class="text-right">
-                <label for="slider2" class="form-label sliderValue"><span id="sliderValue14">180 </span> TF</label>
-              </div>
-            </div>
-          </div>
-        </div>
+
        </div>
        <div class="col-md-4 d-flex justify-content-center align-items-center">
-        <div class="mt-4">
-          <button class="btn custom-btnslct text-left justify-content-left align-items-left d-flex">Viagem 1</button>
-          <br>
-          <button class="btn custom-btnslct text-left justify-content-left align-items-left d-flex ">Viagem 2</button>
-          <br>
-          <button class="btn custom-btnslct text-left justify-content-left align-items-left d-flex ">Viagem 3</button>
-          <br>
-          <button class="btn custom-btnslct text-left justify-content-left align-items-left d-flex ">Viagem 4</button>
-          <br>
-          <button class="btn custom-btnslct text-left justify-content-left align-items-left d-flex ">Viagem 5</button>
+        <div class="mt-4" id="resultados-container">
+
         </div>
       </div>
       

@@ -153,12 +153,15 @@ function criarGrafico(resultados, container, idViagem) {
       return a.F_max - b.F_max;
     });
 
+
     var data = new google.visualization.DataTable();
     data.addColumn('number', 'F_max');
     data.addColumn('number', 'Velocidade - Tipo 1');
     data.addColumn({ type: 'string', role: 'style' }); // Adiciona coluna para definir estilo da linha do tipo 1
     data.addColumn('number', 'Velocidade - Tipo 2');
     data.addColumn({ type: 'string', role: 'style' }); // Adiciona coluna para definir estilo da linha do tipo 2
+
+    
 
     viagemResultados.forEach(function (resultado) {
       if (resultado.tipo === 1) {
@@ -208,6 +211,19 @@ function criarGrafico(resultados, container, idViagem) {
       chart = new google.visualization.ColumnChart(div);
     } else {
       chart = new google.visualization.LineChart(div);
+    } 
+    if (!checkboxTipo1.checked) {
+      for (var i = 0; i < data.getNumberOfRows(); i++) {
+        data.setValue(i, 2, null);
+      }
+      for (var i = 0; i < data.getNumberOfRows(); i++) {
+        data.setValue(i, 1, null);
+      }
+    }
+    if (!checkboxTipo2.checked) {
+      for (var i = 0; i < data.getNumberOfRows(); i++) {
+        data.setValue(i, 3, null);
+      }
     }
 
     chart.draw(data, options);
@@ -224,7 +240,7 @@ function criarGrafico(resultados, container, idViagem) {
 
         chart = new google.visualization.LineChart(div);
       }
-
+      
       chart.draw(data, options);
     });
 
@@ -234,6 +250,8 @@ function criarGrafico(resultados, container, idViagem) {
         options.series[1].type = 'line'; // Define o tipo de gráfico como linha para o tipo 2
 
         chart = new google.visualization.LineChart(div);
+        
+
         chart.draw(data, options);
       }
     });
@@ -244,25 +262,66 @@ function criarGrafico(resultados, container, idViagem) {
         if (checkboxHistograma.checked) {
           options.series[0].type = 'bars'; // Define o tipo de gráfico como histograma para o tipo 1
         }
+      } if (checkboxTipo2.checked && !checkboxTipo1.checked){
+        for (var i = 0; i < data.getNumberOfRows(); i++) {
+          data.setValue(i, 2, null);
+        }
+        for (var i = 0; i < data.getNumberOfRows(); i++) {
+          data.setValue(i, 1, null);
+        }
+      
+      
       } else {
-        options.series[0].lineWidth = 0; // Oculta a linha do tipo 1
         options.series[0].type = 'line'; // Mantém o tipo de gráfico como linha para o tipo 1
+        for (var i = data.getNumberOfRows() - 1; i >= 0; i--) {
+          var tipo2Value = data.getValue(i, 2); // Verifica se a coluna da série 2 possui um valor
+          if (tipo2Value !== null) {
+            data.removeRow(i); // Remove a linha da DataTable
+          }
+        }
+        for (var i = data.getNumberOfRows() - 1; i >= 0; i--) {
+          var tipo2Value = data.getValue(i, 1); // Verifica se a coluna da série 2 possui um valor
+          if (tipo2Value !== null) {
+            data.removeRow(i); // Remove a linha da DataTable
+          }
+        }
       }
-    
+
       chart.draw(data, options);
     });
     
     checkboxTipo2.addEventListener('change', function () {
       if (checkboxTipo2.checked) {
+        
         options.series[1].lineWidth = 2; // Define a espessura da linha do tipo 2
         if (checkboxHistograma.checked) {
           options.series[1].type = 'bars'; // Define o tipo de gráfico como histograma para o tipo 2
         }
+      } if (checkboxTipo2.checked && !checkboxTipo1.checked){
+        for (var i = 0; i < data.getNumberOfRows(); i++) {
+          data.setValue(i, 2, null);
+        }
+        for (var i = 0; i < data.getNumberOfRows(); i++) {
+          data.setValue(i, 1, null);
+        }
+        console.log('a')
+      
+      
+      
+      
       } else {
-        options.series[1].lineWidth = 0; // Oculta a linha do tipo 2
+        
         options.series[1].type = 'line'; // Mantém o tipo de gráfico como linha para o tipo 2
+        for (var i = data.getNumberOfRows() - 1; i >= 0; i--) {
+          var tipo2Value = data.getValue(i, 3); // Verifica se a coluna da série 2 possui um valor
+          if (tipo2Value !== null) {
+            data.removeRow(i); // Remove a linha da DataTable
+          }
+        }
+
+        
       }
-    
+
       chart.draw(data, options);
     });
   }

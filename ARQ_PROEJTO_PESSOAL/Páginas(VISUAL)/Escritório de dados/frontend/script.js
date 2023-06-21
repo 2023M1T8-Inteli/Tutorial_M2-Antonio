@@ -131,10 +131,10 @@ $(document).ready(function() {
 
 // Função para criar o gráfico
 function criarGrafico(resultados, container, idViagem) {
-  var checkboxHistograma = document.getElementById('checkbox-histograma');
-  var checkboxGrafico = document.getElementById('checkbox-grafico');
-  var checkboxTipo1 = document.getElementById('checkbox-c-1');
-  var checkboxTipo2 = document.getElementById('checkbox-c-2');
+  var checkboxHistograma = document.getElementById('checkbox-histograma'); // Seleciona o checkbox do histograma
+  var checkboxGrafico = document.getElementById('checkbox-grafico'); // Seleciona o checkbox do gráfico
+  var checkboxTipo1 = document.getElementById('checkbox-c-1'); // Seleciona o checkbox do tipo 1
+  var checkboxTipo2 = document.getElementById('checkbox-c-2'); // Seleciona o checkbox do tipo 2
 
   var div = document.createElement('div');
   div.style.width = '400px'; // Defina a largura do gráfico
@@ -143,18 +143,18 @@ function criarGrafico(resultados, container, idViagem) {
   container.innerHTML = ''; // Limpa o conteúdo anterior
   container.appendChild(div);
 
-  google.charts.load('current', { packages: ['corechart'] });
-  google.charts.setOnLoadCallback(drawChart);
+  google.charts.load('current', { packages: ['corechart'] }); // Carrega o pacote de gráficos do Google
+  google.charts.setOnLoadCallback(drawChart); // Chama a função drawChart para desenhar o gráfico
 
-  function drawChart() {
-    var viagemResultados = resultados.filter(function (resultado) {
+  function drawChart() { // Função para desenhar o gráfico
+    var viagemResultados = resultados.filter(function (resultado) { // Filtra os resultados pela viagem
       return resultado.id_viagem === idViagem;
-    }).sort(function (a, b) {
+    }).sort(function (a, b) { // Ordena os resultados pela F_max
       return a.F_max - b.F_max;
     });
 
 
-    var data = new google.visualization.DataTable();
+    var data = new google.visualization.DataTable(); // Cria a DataTable
     data.addColumn('number', 'F_max');
     data.addColumn('number', 'Velocidade - Tipo 1');
     data.addColumn({ type: 'string', role: 'style' }); // Adiciona coluna para definir estilo da linha do tipo 1
@@ -163,9 +163,9 @@ function criarGrafico(resultados, container, idViagem) {
 
     
 
-    viagemResultados.forEach(function (resultado) {
-      if (resultado.tipo === 1) {
-        data.addRow([
+    viagemResultados.forEach(function (resultado) { // Itera sobre os resultados
+      if (resultado.tipo === 1) { // Verifica se o resultado é do tipo 1
+        data.addRow([ // Adiciona uma linha à DataTable
           parseFloat(resultado.F_max),
           parseFloat(resultado.Velocidade),
           'color: red', // Estilo da linha do tipo 1 (vermelho)
@@ -175,9 +175,9 @@ function criarGrafico(resultados, container, idViagem) {
       }
     });
 
-    viagemResultados.forEach(function (resultado) {
-      if (resultado.tipo === 2) {
-        data.addRow([
+    viagemResultados.forEach(function (resultado) { // Itera sobre os resultados
+      if (resultado.tipo === 2) { // Verifica se o resultado é do tipo 2
+        data.addRow([ // Adiciona uma linha à DataTable
           parseFloat(resultado.F_max),
           null,
           null,
@@ -187,7 +187,7 @@ function criarGrafico(resultados, container, idViagem) {
       }
     });
 
-    var options = {
+    var options = { // Opções do gráfico
       title: 'Gráfico F_max por Velocidade - Viagem ' + idViagem,
       hAxis: { title: 'F_max' },
       vAxis: { title: 'Velocidade' },
@@ -197,14 +197,14 @@ function criarGrafico(resultados, container, idViagem) {
         duration: 1000,
         easing: 'inAndOut'
       },
-      series: {
+      series: { // Define os estilos das linhas
         0: { lineWidth: 2, type: 'line', curveType: 'function' }, // Estilo da linha do tipo 1
         1: { lineWidth: 2, type: 'line', curveType: 'function' }  // Estilo da linha do tipo 2
       }
     };
 
     var chart;
-    if (checkboxHistograma.checked) {
+    if (checkboxHistograma.checked) { // Verifica se o checkbox do histograma está marcado
       options.series[0].type = 'bars'; // Define o tipo de gráfico como histograma para o tipo 1
       options.series[1].type = 'bars'; // Define o tipo de gráfico como histograma para o tipo 2
 
@@ -212,29 +212,29 @@ function criarGrafico(resultados, container, idViagem) {
     } else {
       chart = new google.visualization.LineChart(div);
     } 
-    if (!checkboxTipo1.checked) {
-      for (var i = 0; i < data.getNumberOfRows(); i++) {
-        data.setValue(i, 2, null);
+    if (!checkboxTipo1.checked) { // Verifica se o checkbox do tipo 1 está marcado
+      for (var i = 0; i < data.getNumberOfRows(); i++) { // Itera sobre as linhas da DataTable
+        data.setValue(i, 2, null); // Define o valor da coluna da série 1 como nulo
       }
-      for (var i = 0; i < data.getNumberOfRows(); i++) {
-        data.setValue(i, 1, null);
+      for (var i = 0; i < data.getNumberOfRows(); i++) { // Itera sobre as linhas da DataTable
+        data.setValue(i, 1, null); // Define o valor da coluna da série 1 como nulo
       }
     }
-    if (!checkboxTipo2.checked) {
-      for (var i = 0; i < data.getNumberOfRows(); i++) {
-        data.setValue(i, 3, null);
+    if (!checkboxTipo2.checked) { // Verifica se o checkbox do tipo 2 está marcado
+      for (var i = 0; i < data.getNumberOfRows(); i++) { // Itera sobre as linhas da DataTable
+        data.setValue(i, 3, null); // Define o valor da coluna da série 2 como nulo
       }
     }
 
     chart.draw(data, options);
 
-    checkboxHistograma.addEventListener('change', function () {
-      if (checkboxHistograma.checked) {
+    checkboxHistograma.addEventListener('change', function () { // Manipulador de evento para o checkbox do histograma
+      if (checkboxHistograma.checked) { // Verifica se o checkbox do histograma está marcado
         options.series[0].type = 'bars'; // Define o tipo de gráfico como histograma para o tipo 1
         options.series[1].type = 'bars'; // Define o tipo de gráfico como histograma para o tipo 2
 
-        chart = new google.visualization.ColumnChart(div);
-      } else if (checkboxGrafico.checked) {
+        chart = new google.visualization.ColumnChart(div); // Cria um novo gráfico de colunas
+      } else if (checkboxGrafico.checked) { // Verifica se o checkbox do gráfico está marcado
         options.series[0].type = 'line'; // Mantém o tipo de gráfico como linha para o tipo 1
         options.series[1].type = 'line'; // Mantém o tipo de gráfico como linha para o tipo 2
 
@@ -244,8 +244,8 @@ function criarGrafico(resultados, container, idViagem) {
       chart.draw(data, options);
     });
 
-    checkboxGrafico.addEventListener('change', function () {
-      if (checkboxGrafico.checked && !checkboxHistograma.checked) {
+    checkboxGrafico.addEventListener('change', function () { // Manipulador de evento para o checkbox do gráfico
+      if (checkboxGrafico.checked && !checkboxHistograma.checked) { // Verifica se o checkbox do gráfico está marcado e o do histograma não
         options.series[0].type = 'line'; // Define o tipo de gráfico como linha para o tipo 1
         options.series[1].type = 'line'; // Define o tipo de gráfico como linha para o tipo 2
 
@@ -256,22 +256,22 @@ function criarGrafico(resultados, container, idViagem) {
       }
     });
 
-    checkboxTipo1.addEventListener('change', function () {
-      if (checkboxTipo1.checked) {
+    checkboxTipo1.addEventListener('change', function () { // Manipulador de evento para o checkbox do tipo 1
+      if (checkboxTipo1.checked) { // Verifica se o checkbox do tipo 1 está marcado
         options.series[0].lineWidth = 2; // Define a espessura da linha do tipo 1
-        if (checkboxHistograma.checked) {
+        if (checkboxHistograma.checked) { // Verifica se o checkbox do histograma está marcado
           options.series[0].type = 'bars'; // Define o tipo de gráfico como histograma para o tipo 1
         }
-      } if (checkboxTipo2.checked && !checkboxTipo1.checked){
-        for (var i = 0; i < data.getNumberOfRows(); i++) {
-          data.setValue(i, 2, null);
+      } if (checkboxTipo2.checked && !checkboxTipo1.checked){ // Verifica se o checkbox do tipo 2 está marcado e o do tipo 1 não
+        for (var i = 0; i < data.getNumberOfRows(); i++) { // Itera sobre as linhas da DataTable
+          data.setValue(i, 2, null); // Define o valor da coluna da série 1 como nulo
         }
-        for (var i = 0; i < data.getNumberOfRows(); i++) {
-          data.setValue(i, 1, null);
+        for (var i = 0; i < data.getNumberOfRows(); i++) { // Itera sobre as linhas da DataTable
+          data.setValue(i, 1, null); // Define o valor da coluna da série 1 como nulo
         }
       
       
-      } else {
+      } else { // Verifica se o checkbox do tipo 1 não está marcado
         options.series[0].type = 'line'; // Mantém o tipo de gráfico como linha para o tipo 1
         for (var i = data.getNumberOfRows() - 1; i >= 0; i--) {
           var tipo2Value = data.getValue(i, 2); // Verifica se a coluna da série 2 possui um valor
@@ -279,9 +279,9 @@ function criarGrafico(resultados, container, idViagem) {
             data.removeRow(i); // Remove a linha da DataTable
           }
         }
-        for (var i = data.getNumberOfRows() - 1; i >= 0; i--) {
+        for (var i = data.getNumberOfRows() - 1; i >= 0; i--) { // Itera sobre as linhas da DataTable
           var tipo2Value = data.getValue(i, 1); // Verifica se a coluna da série 2 possui um valor
-          if (tipo2Value !== null) {
+          if (tipo2Value !== null) { // Verifica se a coluna da série 2 possui um valor
             data.removeRow(i); // Remove a linha da DataTable
           }
         }
@@ -290,31 +290,30 @@ function criarGrafico(resultados, container, idViagem) {
       chart.draw(data, options);
     });
     
-    checkboxTipo2.addEventListener('change', function () {
-      if (checkboxTipo2.checked) {
+    checkboxTipo2.addEventListener('change', function () { // Manipulador de evento para o checkbox do tipo 2
+      if (checkboxTipo2.checked) { // Verifica se o checkbox do tipo 2 está marcado
         
         options.series[1].lineWidth = 2; // Define a espessura da linha do tipo 2
-        if (checkboxHistograma.checked) {
+        if (checkboxHistograma.checked) { // Verifica se o checkbox do histograma está marcado
           options.series[1].type = 'bars'; // Define o tipo de gráfico como histograma para o tipo 2
         }
-      } if (checkboxTipo2.checked && !checkboxTipo1.checked){
-        for (var i = 0; i < data.getNumberOfRows(); i++) {
-          data.setValue(i, 2, null);
+      } if (checkboxTipo2.checked && !checkboxTipo1.checked){ // Verifica se o checkbox do tipo 2 está marcado e o do tipo 1 não
+        for (var i = 0; i < data.getNumberOfRows(); i++) { // Itera sobre as linhas da DataTable
+          data.setValue(i, 2, null); // Define o valor da coluna da série 1 como nulo
         }
-        for (var i = 0; i < data.getNumberOfRows(); i++) {
-          data.setValue(i, 1, null);
+        for (var i = 0; i < data.getNumberOfRows(); i++) { // Itera sobre as linhas da DataTable
+          data.setValue(i, 1, null); // Define o valor da coluna da série 1 como nulo
         }
-        console.log('a')
       
       
       
       
-      } else {
+      } else { // Verifica se o checkbox do tipo 2 não está marcado
         
         options.series[1].type = 'line'; // Mantém o tipo de gráfico como linha para o tipo 2
-        for (var i = data.getNumberOfRows() - 1; i >= 0; i--) {
+        for (var i = data.getNumberOfRows() - 1; i >= 0; i--) { // Itera sobre as linhas da DataTable
           var tipo2Value = data.getValue(i, 3); // Verifica se a coluna da série 2 possui um valor
-          if (tipo2Value !== null) {
+          if (tipo2Value !== null) { // Verifica se a coluna da série 2 possui um valor
             data.removeRow(i); // Remove a linha da DataTable
           }
         }
@@ -368,14 +367,12 @@ function mostrarIdViagem(resultados) { // Recebe o objeto com os resultados
 
 // Função para fazer a requisição Ajax
 function enviarSolicitacaoAjax(url, valoresSliders, tipo) { // Recebe a URL, os valores dos sliders e o tipo de resultado
-  $.ajax({
+  $.ajax({ // Faz a requisição Ajax
     url: url,
     method: 'GET',
     data: valoresSliders,
     success: function(response) {
-      obj[tipo] = response;
-      console.log(obj);
-
+      obj[tipo] = response; // Armazena os resultados no objeto
       mostrarIdViagem(obj);    // Chama a função mostrarIdViagem para exibir os resultados
     },
     error: function(error) {

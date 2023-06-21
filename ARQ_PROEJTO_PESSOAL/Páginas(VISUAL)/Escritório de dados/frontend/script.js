@@ -92,7 +92,7 @@ $(document).ready(function() {
      $('.cst-btn-2-2').show();
      $('.histograma').show();
      $('.markov').show();
-     $('.graficos').show();
+     $('.grafico').show();
    })
 
    // Botao fechar tipos de dados
@@ -102,7 +102,7 @@ $(document).ready(function() {
      $('.cst-btn-2-2').hide();
      $('.histograma').hide();
      $('.markov').hide();
-     $('.graficos').hide();
+     $('.grafico').hide();
    })
 
    // Botao abrir pico
@@ -131,6 +131,12 @@ $(document).ready(function() {
 
 // Função para criar o gráfico
 function criarGrafico(resultados, container, idViagem) {
+  var checkboxHistograma = document.getElementById('checkbox-histograma');
+  var checkboxGrafico = document.getElementById('checkbox-grafico');
+
+  var checkboxTipo1 = document.getElementById('checkbox-c-1');
+  var checkboxTipo2 = document.getElementById('checkbox-c-2');
+
   var div = document.createElement('div');
   div.style.width = '400px'; // Defina a largura do gráfico
   div.style.height = '300px'; // Defina a altura do gráfico
@@ -190,61 +196,115 @@ function criarGrafico(resultados, container, idViagem) {
         easing: 'inAndOut'
       },
       series: {
-        0: { lineWidth: 2, curveType: 'function' }, // Estilo da linha do tipo 1
-        1: { lineWidth: 2, curveType: 'function' }  // Estilo da linha do tipo 2
+        0: { lineWidth: checkboxTipo1.checked ? 2 : 0, type: 'line', curveType: 'function' }, // Estilo da linha do tipo 1
+        1: { lineWidth: checkboxTipo2.checked ? 2 : 0, type: 'line', curveType: 'function' }  // Estilo da linha do tipo 2
       }
     };
 
-    var chart = new google.visualization.LineChart(div);
+    var chart;
+    if (checkboxHistograma.checked) {
+      if (checkboxTipo1.checked) {
+      options.series[0].type = 'bars'; // Define o tipo de gráfico como histograma para o tipo 1
+      } else if (checkboxTipo2.checked) {
+      options.series[1].type = 'bars'; // Define o tipo de gráfico como histograma para o tipo 2
+      }
+
+      chart = new google.visualization.ColumnChart(div);
+    } else {
+      chart = new google.visualization.LineChart(div);
+    }
+
     chart.draw(data, options);
 
-    // Adiciona ouvinte de evento para as caixas de seleção
-    var checkboxTipo1 = document.getElementById('checkbox-c-1');
-    var checkboxTipo2 = document.getElementById('checkbox-c-2');
+    checkboxHistograma.addEventListener('change', function () {
+      if (checkboxHistograma.checked) {
+        options.series[0].type = 'bars'; // Define o tipo de gráfico como histograma para o tipo 1
+        options.series[1].type = 'bars'; // Define o tipo de gráfico como histograma para o tipo 2
+
+        if (!checkboxTipo1.checked) {
+          options.series[0].lineWidth = 0; // Oculta a linha do tipo 1
+        }
+        if (!checkboxTipo2.checked) {
+          options.series[1].lineWidth = 0; // Oculta a linha do tipo 2
+        }
+
+        chart = new google.visualization.ColumnChart(div);
+      } else if (checkboxGrafico.checked) {
+        if (!checkboxTipo1.checked) {
+        options.series[0].type = 'line'; // Mantém o tipo de gráfico como linha para o tipo 1
+        }if (!checkboxTipo2.checked) {
+        options.series[1].type = 'line'; // Mantém o tipo de gráfico como linha para o tipo 2
+        }
+
+        chart = new google.visualization.LineChart(div);
+      }
+
+      chart.draw(data, options);
+    });
+
+    checkboxGrafico.addEventListener('change', function () {
+      if (checkboxGrafico.checked && !checkboxHistograma.checked) {
+        options.series[0].type = 'line'; // Define o tipo de gráfico como linha para o tipo 1
+        options.series[1].type = 'line'; // Define o tipo de gráfico como linha para o tipo 2
+
+        chart = new google.visualization.LineChart(div);
+        chart.draw(data, options);
+      }
+    });
 
     checkboxTipo1.addEventListener('change', function () {
       if (checkboxTipo1.checked) {
         options.series[0].lineWidth = 2; // Define a espessura da linha do tipo 1
+        if (checkboxHistograma.checked) {
+          options.series[0].type = 'bars'; // Define o tipo de gráfico como histograma para o tipo 1
+        }
       } else {
         options.series[0].lineWidth = 0; // Oculta a linha do tipo 1
+        options.series[0].type = 'line'; // Mantém o tipo de gráfico como linha para o tipo 1
       }
-
+    
       chart.draw(data, options);
     });
-
+    
     checkboxTipo2.addEventListener('change', function () {
       if (checkboxTipo2.checked) {
         options.series[1].lineWidth = 2; // Define a espessura da linha do tipo 2
+        if (checkboxHistograma.checked) {
+          options.series[1].type = 'bars'; // Define o tipo de gráfico como histograma para o tipo 2
+        }
       } else {
         options.series[1].lineWidth = 0; // Oculta a linha do tipo 2
+        options.series[1].type = 'line'; // Mantém o tipo de gráfico como linha para o tipo 2
       }
-
+    
       chart.draw(data, options);
     });
+    
+    
   }
 }
 
 
 
 
-var obj = {
+var obj = { // Objeto para armazenar os resultados
   tipo1: [],
   tipo2: []
 };
 
 // Função para exibir os resultados
-function mostrarIdViagem(resultados) {
+function mostrarIdViagem(resultados) { // Recebe o objeto com os resultados
   var resultadosContainer = document.getElementById('resultados-container');
   resultadosContainer.innerHTML = ''; // Limpa o conteúdo anterior
 
-  if (resultados.tipo1.length > 0 || resultados.tipo2.length > 0) {
+  if (resultados.tipo1.length > 0 || resultados.tipo2.length > 0) { // Verifica se há resultados
     var uniqueIds = [];
     var ul = document.createElement('ul');
     ul.classList.add('lista-resultados', 'list-group'); // Adiciona classes CSS à lista
 
     var resultadosCombinados = resultados.tipo1.concat(resultados.tipo2);
 
-    resultadosCombinados.forEach(function(resultado) {
+    resultadosCombinados.forEach(function(resultado) { // Itera sobre os resultados
       if (!uniqueIds.includes(resultado.id_viagem)) {
         uniqueIds.push(resultado.id_viagem); // Adiciona o ID da viagem ao array
         var li = document.createElement('li');
@@ -252,7 +312,7 @@ function mostrarIdViagem(resultados) {
         ul.appendChild(li);
 
         // Chama a função criarGrafico para criar o gráfico
-        criarGrafico(resultadosCombinados, li, resultado.id_viagem);
+        criarGrafico(resultadosCombinados, li, resultado.id_viagem); 
       }
     });
 
@@ -265,7 +325,7 @@ function mostrarIdViagem(resultados) {
 }
 
 // Função para fazer a requisição Ajax
-function enviarSolicitacaoAjax(url, valoresSliders, tipo) {
+function enviarSolicitacaoAjax(url, valoresSliders, tipo) { // Recebe a URL, os valores dos sliders e o tipo de resultado
   $.ajax({
     url: url,
     method: 'GET',

@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 const sqlite3 = require('sqlite3').verbose();
-const DBPATH = 'D:/INTELI/Projeto2/src/Backend/src/database/BANCO DE DADOS ATUALIZADO.db';
+const DBPATH = '/Users/macbook/Documents/GitHub/Projeto2/src/Backend/src/database/BANCO DE DADOS ATUALIZADO.db';
 
 const hostname = '127.0.0.1';
 const port = 3001

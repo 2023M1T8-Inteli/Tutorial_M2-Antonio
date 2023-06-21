@@ -133,7 +133,6 @@ $(document).ready(function() {
 function criarGrafico(resultados, container, idViagem) {
   var checkboxHistograma = document.getElementById('checkbox-histograma');
   var checkboxGrafico = document.getElementById('checkbox-grafico');
-
   var checkboxTipo1 = document.getElementById('checkbox-c-1');
   var checkboxTipo2 = document.getElementById('checkbox-c-2');
 
@@ -196,18 +195,15 @@ function criarGrafico(resultados, container, idViagem) {
         easing: 'inAndOut'
       },
       series: {
-        0: { lineWidth: checkboxTipo1.checked ? 2 : 0, type: 'line', curveType: 'function' }, // Estilo da linha do tipo 1
-        1: { lineWidth: checkboxTipo2.checked ? 2 : 0, type: 'line', curveType: 'function' }  // Estilo da linha do tipo 2
+        0: { lineWidth: 2, type: 'line', curveType: 'function' }, // Estilo da linha do tipo 1
+        1: { lineWidth: 2, type: 'line', curveType: 'function' }  // Estilo da linha do tipo 2
       }
     };
 
     var chart;
     if (checkboxHistograma.checked) {
-      if (checkboxTipo1.checked) {
       options.series[0].type = 'bars'; // Define o tipo de gráfico como histograma para o tipo 1
-      } else if (checkboxTipo2.checked) {
       options.series[1].type = 'bars'; // Define o tipo de gráfico como histograma para o tipo 2
-      }
 
       chart = new google.visualization.ColumnChart(div);
     } else {
@@ -221,20 +217,10 @@ function criarGrafico(resultados, container, idViagem) {
         options.series[0].type = 'bars'; // Define o tipo de gráfico como histograma para o tipo 1
         options.series[1].type = 'bars'; // Define o tipo de gráfico como histograma para o tipo 2
 
-        if (!checkboxTipo1.checked) {
-          options.series[0].lineWidth = 0; // Oculta a linha do tipo 1
-        }
-        if (!checkboxTipo2.checked) {
-          options.series[1].lineWidth = 0; // Oculta a linha do tipo 2
-        }
-
         chart = new google.visualization.ColumnChart(div);
       } else if (checkboxGrafico.checked) {
-        if (!checkboxTipo1.checked) {
         options.series[0].type = 'line'; // Mantém o tipo de gráfico como linha para o tipo 1
-        }if (!checkboxTipo2.checked) {
         options.series[1].type = 'line'; // Mantém o tipo de gráfico como linha para o tipo 2
-        }
 
         chart = new google.visualization.LineChart(div);
       }
@@ -279,11 +265,8 @@ function criarGrafico(resultados, container, idViagem) {
     
       chart.draw(data, options);
     });
-    
-    
   }
 }
-
 
 
 
